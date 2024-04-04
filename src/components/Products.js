@@ -116,6 +116,7 @@ const Products = () => {
     };
 
     onLoadHandler();
+    // eslint-disable-next-line
   }, []);
 
   // TODO: CRIO_TASK_MODULE_PRODUCTS - Implement search logic
