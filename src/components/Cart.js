@@ -10,43 +10,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./Cart.css";
 
-// Definition of Data Structures used
-/**
- * @typedef {Object} Product - Data on product available to buy
- *
- * @property {string} name - The name or title of the product
- * @property {string} category - The category that the product belongs to
- * @property {number} cost - The price to buy the product
- * @property {number} rating - The aggregate rating of the product (integer out of five)
- * @property {string} image - Contains URL for the product image
- * @property {string} _id - Unique ID for the product
- */
-
-/**
- * @typedef {Object} CartItem -  - Data on product added to cart
- *
- * @property {string} name - The name or title of the product in cart
- * @property {string} qty - The quantity of product added to cart
- * @property {string} category - The category that the product belongs to
- * @property {number} cost - The price to buy the product
- * @property {number} rating - The aggregate rating of the product (integer out of five)
- * @property {string} image - Contains URL for the product image
- * @property {string} productId - Unique ID for the product
- */
-
-/**
- * Returns the complete data on all products in cartData by searching in productsData
- *
- * @param { Array.<{ productId: String, qty: Number }> } cartData
- *    Array of objects with productId and quantity of products in cart
- *
- * @param { Array.<Product> } productsData
- *    Array of objects with complete data on all available products
- *
- * @returns { Array.<CartItem> }
- *    Array of objects with complete data on products in cart
- *
- */
 export const generateCartItemsFrom = (cartData, productsData) => {
   if (!cartData) return;
 
@@ -58,16 +21,6 @@ export const generateCartItemsFrom = (cartData, productsData) => {
   return nextCart;
 };
 
-/**
- * Get the total value of all products added to the cart
- *
- * @param { Array.<CartItem> } items
- *    Array of objects with complete data on products added to the cart
- *
- * @returns { Number }
- *    Value of all items in the cart
- *
- */
 export const getTotalCartValue = (items = []) => {
   if (!items.length) return;
 
@@ -78,23 +31,8 @@ export const getTotalCartValue = (items = []) => {
     }, 0);
 };
 
-/**
- * Component to display the current quantity for a product and + and - buttons to update product quantity on cart
- *
- * @param {Number} value
- *    Current quantity of product in cart
- *
- * @param {Function} handleAdd
- *    Handler function which adds 1 more of a product to cart
- *
- * @param {Function} handleDelete
- *    Handler function which reduces the quantity of a product in cart by 1
- *
- *
- */
 
 const ItemQuantity = ({ value, handleAdd, handleDelete, isReadOnly }) => {
-  // console.log(isReadOnly);
   return (
     <>
       {!isReadOnly ? (
@@ -116,22 +54,6 @@ const ItemQuantity = ({ value, handleAdd, handleDelete, isReadOnly }) => {
   );
 };
 
-/**
- * Component to display the Cart view
- *
- * @param { Array.<Product> } products
- *    Array of objects with complete data of all available products
- *
- * @param { Array.<Product> } items
- *    Array of objects with complete data on products in cart
- *
- * @param {Function} handleDelete
- *    Current quantity of product in cart
- *
- * @param {Boolean} isReadOnly
- *    If product quantity on cart is to be displayed as read only without the + - options to change quantity
- *
- */
 const Cart = ({ products, items = [], handleQuantity, isReadOnly }) => {
   const token = localStorage.getItem("token");
   const history = useHistory();
@@ -149,8 +71,6 @@ const Cart = ({ products, items = [], handleQuantity, isReadOnly }) => {
   return (
     <>
       <Box className="cart">
-        {/* TODO: CRIO_TASK_MODULE_CART - Display view for each cart item with non-zero quantity */}
-
         {items.map((item) => {
           if (item.qty > 0) {
             return (
