@@ -6,8 +6,8 @@ import Checkout from "./components/Checkout";
 import Thanks from "./components/Thanks";
 
 export const config = {
-  // endpoint: `https://sanket-qkart-backend.herokuapp.com/api/v1`,
-  endpoint: "http://localhost:8082/api/v1",
+  endpoint: "https://qkart-backend-production.up.railway.app/api/v1",
+  // endpoint: "http://localhost:8082/api/v1",
 };
 
 function App() {
